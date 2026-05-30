@@ -3,15 +3,17 @@ const express = require("express");
 const userModel = require('./models/User.model.js')
 const userRouter = require('./routes/user.route.js')
 const accountRouter = require('./routes/account.route.js')
+const connectDB = require('./config/db.js')
 const cors = require('cors')
 
 const app = express()
+connectDB()
 app.use(cors())
 app.use(express.json())
 
-app.use('api/v1/',userRouter )
+app.use('/api/v1/',userRouter )
 
-app.use('api/v1', accountRouter)
+app.use('/api/v1', accountRouter)
 
 const PORT = 3000
 app.listen(PORT, (err)=> {
